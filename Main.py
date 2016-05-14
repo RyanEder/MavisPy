@@ -40,8 +40,8 @@ class Audio:
             return None
 
     def Speak(self, tts, timeout=0):
-        tts.save("audio_out/response.mp3")
-        pyglet.resource.media("audio_out/response.mp3").play()
+        tts.save("response.mp3")
+        pyglet.resource.media("response.mp3").play()
         time.sleep(timeout)
 
     def DidntUnderstand(self):
@@ -79,7 +79,6 @@ class Weather:
             self.last_download = time.time()
             self.latlng = self.data.GetLatLng()
             url = 'http://forecast.weather.gov/MapClick.php?&lat='+str(self.latlng[0])+'&lon='+str(self.latlng[1])+'&FcstType=dwml'
-            print(url)
             self.weather = urllib.request.urlopen(url).read().decode('utf-8')
             self.location = self.weather.split('<description>')[1].split('</description>')[0].split(',')[0]
             return True
